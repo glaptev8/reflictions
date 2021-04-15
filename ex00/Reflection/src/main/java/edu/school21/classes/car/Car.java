@@ -1,7 +1,5 @@
 package edu.school21.classes.car;
 
-import java.sql.SQLOutput;
-
 public class Car {
   String mark;
   Integer price;
