@@ -1,5 +1,6 @@
 package edu.school21;
 
+
 import edu.school21.annotation.HtmlForm;
 import edu.school21.annotation.HtmlInput;
 
@@ -10,9 +11,8 @@ import java.lang.reflect.Field;
 
 public class Program {
   public static void main(String[] args) throws IOException {
-    HtmlProcessor htmlProcessor = new HtmlProcessor();
-
-    checkAnnotation(htmlProcessor.getClass());
+    UserForm userForm = new UserForm();
+    checkAnnotation(userForm.getClass());
   }
 
   private static void checkAnnotation(Class clazz) throws IOException {

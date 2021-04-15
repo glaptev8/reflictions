@@ -1,14 +1,27 @@
 package edu.school21;
 
-import edu.school21.annotation.HtmlForm;
-import edu.school21.annotation.HtmlInput;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
+import java.util.Set;
 
-@HtmlForm(fileName = "user_form.html", action = "/users", method = "post")
-public class HtmlProcessor {
-  @HtmlInput(type = "text", name = "first_name", placeholder = "Enter First Name")
-  String firstName;
-  @HtmlInput(type = "text", name = "last_name", placeholder = "Enter Last Name")
-  String lastName;
-  @HtmlInput(type = "password", name = "password", placeholder = "Enter Password")
-  String password;
+@SupportedAnnotationTypes("edu.school21.annotation.HtmlForm")
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
+public class HtmlProcessor extends AbstractProcessor {
+
+  @Override
+  public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    for (TypeElement annotation : annotations) {
+      for (Element element : roundEnv.getElementsAnnotatedWith(annotation)) {
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "found @Log at " + element);
+      }
+    }
+    return true;
+  }
+
 }
